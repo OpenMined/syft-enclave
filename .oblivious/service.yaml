@@ -1,0 +1,60 @@
+auth:
+- auth_name: pkipsk
+  auth_type: signed_headers
+base_image: oblv_ubuntu_18_04_proxy_nsm_api_python_3_8
+build_args: []
+meta:
+  author: Team Oblivious
+  author_email: hello@oblivious.ai
+  git: https://github.com/ObliviousAI/FastAPI-Enclave-Services.git
+  version: 0.1.0
+paths:
+- access: domain,user
+  path: /hello/
+  short_description: Hello world example
+- access: domain
+  path: /tensor/dataset/add
+  short_description: Add Data set
+- access: domain,user
+  path: /tensor/dataset/list
+  short_description: Get Uploaded dataset list
+- access: user
+  path: /tensor/action
+  short_description: Add action on tensor
+- access: user
+  path: /tensor/publish/request
+  short_description: Add action on tensor
+- access: domain
+  path: /tensor/publish/current_budget
+  short_description: Add action on tensor
+- access: user
+  path: /tensor/publish/result_ready
+  short_description: Add action on tensor
+- access: domain
+  path: /tensor/publish/budget_deducted
+  short_description: Add action on tensor
+- access: user
+  path: /tensor/publish/result
+  short_description: Add action on tensor
+roles:
+- role_auth: pkipsk
+  role_cardinality: 3
+  role_description: Role for the domain nodes
+  role_name: domain
+- role_auth: pkipsk
+  role_cardinality: 1
+  role_description: Role for the data scientist
+  role_name: user
+traffic:
+  '0':
+    name: inbound
+    port: 80
+  inbound:
+  - name: inbound
+    port: 80
+    type: tcp
+  outbound:
+  - domain: example.com
+    name: example
+    port: 443
+    type: tcp

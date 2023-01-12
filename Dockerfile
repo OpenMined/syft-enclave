@@ -1,6 +1,6 @@
 FROM python:3.8 as base
 
-# let's create a folder to work from 
+# let's create a folder to work from
 WORKDIR /code
 
 # copy over our requirements

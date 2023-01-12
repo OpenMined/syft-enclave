@@ -1,20 +1,22 @@
-from pydantic import BaseSettings, Extra
-from typing import Dict, Any
-import functools 
-import yaml
+import functools
+from typing import Any, Dict
 
-OBLV_CONFIG_PATH = '/usr/runtime.yaml'
+import yaml
+from pydantic import BaseSettings, Extra
+
+OBLV_CONFIG_PATH = "/usr/runtime.yaml"
+
 
 def yaml_config(settings: BaseSettings) -> Dict[str, Any]:
     try:
-        with open(OBLV_CONFIG_PATH, 'r') as f:
+        with open(OBLV_CONFIG_PATH, "r") as f:
             config_data = yaml.safe_load(f)
     except:
         config_data = {}
     return config_data
 
-class Settings(BaseSettings):
 
+class Settings(BaseSettings):
     class Config:
         extra = Extra.allow
 
@@ -31,6 +33,7 @@ class Settings(BaseSettings):
                 env_settings,
                 file_secret_settings,
             )
+
 
 @functools.lru_cache()
 def get_settings() -> Settings:

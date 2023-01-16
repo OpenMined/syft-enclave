@@ -36,7 +36,7 @@ repos:
         args: ["--never", "--application-directories=src"]
         always_run: true
         files: ^src
-  
+
 
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
@@ -52,7 +52,7 @@ repos:
       - id: black
         args: ["."]
         always_run: true
-    
+
 
   # - repo: https://github.com/PyCQA/flake8
   #   rev: 6.0.0
@@ -63,5 +63,5 @@ repos:
   #       additional_dependencies:
   #         - flake8-bugbear
   #Add flake8 with config files
-  
+
 # add mypy later

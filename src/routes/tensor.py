@@ -3,7 +3,13 @@ from typing import Any, List, Union
 from uuid import uuid4
 
 import syft as sy
-from fastapi import (
+from syft import Tensor
+from syft.core.adp.data_subject_ledger import DataSubjectLedger
+from syft.core.adp.ledger_store import DictLedgerStore
+
+from models.tensor_models import *
+
+from fastapi import (  # isort: skip
     APIRouter,
     BackgroundTasks,
     File,
@@ -14,11 +20,7 @@ from fastapi import (
     Request,
     UploadFile,
 )
-from syft import Tensor
-from syft.core.adp.data_subject_ledger import DataSubjectLedger
-from syft.core.adp.ledger_store import DictLedgerStore
 
-from models.tensor_models import *
 
 router = APIRouter(tags=["tensor"])
 
@@ -97,7 +99,7 @@ async def perform_operation(
     if len(inputs) == 0 or len(inputs) >= 3:
         raise HTTPException(400, "Invalid count of arguments provided")
     if inputs[0]["type"] != "wrapper":
-        raise HTTPException(400, "First argument should be of type OblvTensorWrapper")
+        raise HTTPException(400, "First argument should be of type OblvEnclavePointer")
     for v in inputs:
         if v["type"] == "wrapper":
             arg = [

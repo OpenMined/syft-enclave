@@ -1,9 +1,7 @@
 fastapi>=0.68.0,<0.69.0
-pandas==1.4.2
 pydantic>=1.8.0,<2.0.0
 python-multipart==0.0.5
 PyYAML==6.0
-requests==2.28.1
 syft @ git+https://github.com/OpenMined/PySyft@0.8#egg=syft&subdirectory=packages/syft
 uvicorn>=0.15.0,<0.16.0
 validators==0.19.0

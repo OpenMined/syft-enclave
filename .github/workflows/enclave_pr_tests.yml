@@ -1,0 +1,61 @@
+# Enclave FastAPI tests
+name: Enclave FastAPI tests
+
+on:
+  workflow_call:
+
+  pull_request:
+    branches:
+      - "**"
+
+  workflow_dispatch:
+    inputs:
+      none:
+        description: "Run Version Tests Manually"
+        required: false
+
+
+jobs:
+  enclave-fastapi-tests:
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.10"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v3
+
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-py${{ matrix.python-version }}
+          restore-keys: |
+            ${{ runner.os }}-pip-py${{ matrix.python-version }}
+
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade --user pip
+
+      - name: Install tox
+        run: |
+          pip install tox==3.27.1
+
+      - name: Run Enclave FastAPI tests
+        shell: bash
+        run: |
+          tox -e enclave.test.fastapi

@@ -400,6 +400,7 @@ def check_all_budgets_received(publish_request_id, prepare_result_bool=True):
         print(x["owner"] + ": " + str(x["current_budget"]))
         if x["current_budget"] == None:
             return False
+
     if prepare_result_bool == False:
         return True
     prepare_result(publish_request_id)

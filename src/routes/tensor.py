@@ -282,12 +282,14 @@ def publish_check_result_status(
                 request[0]["budget_needed"], min_available_budget
             )
         )
+
         if request[0]["budget_needed"] > min_available_budget:
             raise HTTPException(
                 400,
                 "Not enough budget available. Ask the domain owners for more budget and request again.",
             )
-        return request[0]["budget_needed"]
+
+        return float(request[0]["budget_needed"])
 
 
 @router.post("/publish/budget_deducted")

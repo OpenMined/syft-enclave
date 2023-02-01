@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, Response
 from fastapi.openapi.utils import get_openapi
 
-from routes import hello, tensor
+from routes import hello, tensor, worker
 
 app = FastAPI()
 logger = logging.getLogger()
@@ -18,7 +18,10 @@ async def log_request(request, call_next):
     async for chunk in response.body_iterator:
         body += chunk
     print("body")
-    print(body.decode("UTF-8"))
+    try:
+        print(body.decode("UTF-8"))
+    except Exception as e:
+        print(e)
     # do something with body ...
     return Response(
         content=body,
@@ -36,6 +39,7 @@ async def root():
 # Adding routes for each example in the repo
 app.include_router(hello.router, prefix="/hello")
 app.include_router(tensor.router, prefix="/tensor")
+app.include_router(worker.router, prefix="/worker")
 
 # This is only here to customize the swagger :)
 def custom_openapi():

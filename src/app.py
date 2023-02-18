@@ -39,7 +39,7 @@ async def root():
 # Adding routes for each example in the repo
 app.include_router(hello.router, prefix="/hello")
 app.include_router(tensor.router, prefix="/tensor")
-app.include_router(worker.router, prefix="/worker")
+app.include_router(worker.router)
 
 # This is only here to customize the swagger :)
 def custom_openapi():

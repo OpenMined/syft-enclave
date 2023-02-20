@@ -2,6 +2,16 @@ from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
 from syft import Worker, deserialize, serialize
 
 router = APIRouter(tags=["worker"])
+
+def yaml_config() -> dict:
+    try:
+        with open('/usr/runtime.yaml', 'r') as f:
+            config_data = yaml.safe_load(f)["runtime_args"]
+    except:
+        config_data = {}
+    return config_data
+
+
 worker: Worker = Worker()
 
 

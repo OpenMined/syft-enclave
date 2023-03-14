@@ -37,10 +37,10 @@ paths:
   path: /tensor/publish/result
   short_description: Add action on tensor
 - access: domain,user
-  path: /worker/api
+  path: /api/v1/new/api
   short_description: contains worker api metadata
 - access: domain,user
-  path: /worker/syft_api_call
+  path: /api/v1/new/api_call
   short_description: Syft API endpoint
 roles:
 - role_auth: pkipsk

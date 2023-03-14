@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, Response
 from fastapi.openapi.utils import get_openapi
 
-from routes import hello, tensor, worker
+from routes import worker
 
 app = FastAPI()
 logger = logging.getLogger()

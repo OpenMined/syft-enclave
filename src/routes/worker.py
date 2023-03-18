@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRouter
 from syft import Worker, deserialize, serialize
 from syft.core.node.new.client import Routes
+from syft.core.node.new.credentials import SyftVerifyKey
 from syft.core.node.worker import NodeType
 
 router = APIRouter(tags=["worker"])
@@ -22,8 +23,9 @@ def syft_api_call(data: bytes = Depends(get_body)) -> Response:
 
 
 @router.get(f"{Routes.ROUTE_API.value}")
-def syft_new_api() -> Response:
+def syft_new_api(verify_key: str) -> Response:
+    user_verify_key: SyftVerifyKey = SyftVerifyKey.from_string(verify_key)
     return Response(
-        serialize(worker.get_api(), to_bytes=True),
+        serialize(worker.get_api(user_verify_key), to_bytes=True),
         media_type="application/octet-stream",
     )

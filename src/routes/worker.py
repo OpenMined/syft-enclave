@@ -2,12 +2,13 @@ from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
 import os
 
 import yaml
-from syft import Worker, deserialize, serialize, enable_external_lib
+from syft import Worker, deserialize, enable_external_lib, serialize
 from syft.core.node.new.client import Routes
 from syft.core.node.worker import NodeType
 
 router = APIRouter(tags=["worker"])
 enable_external_lib("oblv")
+
 
 def yaml_config() -> dict:
     try:

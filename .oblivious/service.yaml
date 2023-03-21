@@ -10,33 +10,6 @@ meta:
   version: 0.1.0
 paths:
 - access: domain,user
-  path: /hello/
-  short_description: Hello world example
-- access: domain
-  path: /tensor/dataset/add
-  short_description: Add Data set
-- access: domain,user
-  path: /tensor/dataset/list
-  short_description: Get Uploaded dataset list
-- access: user
-  path: /tensor/action
-  short_description: Add action on tensor
-- access: user
-  path: /tensor/publish/request
-  short_description: Add action on tensor
-- access: domain
-  path: /tensor/publish/current_budget
-  short_description: Add action on tensor
-- access: user
-  path: /tensor/publish/result_ready
-  short_description: Add action on tensor
-- access: domain
-  path: /tensor/publish/budget_deducted
-  short_description: Add action on tensor
-- access: user
-  path: /tensor/publish/result
-  short_description: Add action on tensor
-- access: domain,user
   path: /api/v1/new/api
   short_description: contains worker api metadata
 - access: domain,user
@@ -51,16 +24,9 @@ roles:
   role_cardinality: 1
   role_description: Role for the data scientist
   role_name: user
+
 traffic:
-  '0':
-    name: inbound
-    port: 80
   inbound:
   - name: inbound
     port: 80
-    type: tcp
-  outbound:
-  - domain: example.com
-    name: example
-    port: 443
     type: tcp

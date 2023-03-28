@@ -30,3 +30,4 @@ traffic:
   - name: inbound
     port: 80
     type: tcp
+  outbound: []

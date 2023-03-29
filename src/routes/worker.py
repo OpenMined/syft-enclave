@@ -1,12 +1,16 @@
-from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
+# stdlib
+import os
 
 from syft import Worker, deserialize, enable_external_lib, serialize
 from syft.core.node.new.client import Routes
 from syft.core.node.new.credentials import SyftVerifyKey
 from syft.core.node.worker import NodeType
 
+from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
+
+
 router = APIRouter(tags=["worker"])
-enable_external_lib("oblv")
+os.environ["ENABLE_OBLV"] = "true"
 
 
 worker: Worker = Worker(node_type=NodeType.ENCLAVE)

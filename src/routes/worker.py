@@ -10,6 +10,7 @@ from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
 
 
 router = APIRouter(tags=["worker"])
+enable_external_lib("oblv")
 os.environ["ENABLE_OBLV"] = "true"
 
 

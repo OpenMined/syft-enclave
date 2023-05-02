@@ -2,9 +2,9 @@
 import os
 
 from syft import Worker, deserialize, enable_external_lib, serialize
-from syft.core.node.new.client import Routes
-from syft.core.node.new.credentials import SyftVerifyKey
-from syft.core.node.worker import NodeType
+from syft.client.client import Routes
+from syft.node.credentials import SyftVerifyKey
+from syft.abstract_node import NodeType
 
 from fastapi import APIRouter, Depends, Request, Response  # isort: skipAPIRoute
 

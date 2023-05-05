@@ -1,7 +1,7 @@
 auth:
 - auth_name: pkipsk
   auth_type: signed_headers
-base_image: oblv_ubuntu_18_04_proxy_nsm_api_python_3_8
+base_image: oblv_ubuntu_18_04_proxy_nsm_api_python_3_9
 build_args: []
 meta:
   author: Team Oblivious

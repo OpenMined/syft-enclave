@@ -10,22 +10,22 @@ meta:
   version: 0.1.0
 paths:
 - access: domain,user
-  path: /api/v2/api
+  path: /api/v1/new/api
   short_description: contains worker api metadata
 - access: domain,user
-  path: /api/v2/api_call
+  path: /api/v1/new/api_call
   short_description: Syft API endpoint
 - access: domain,user
   path: /
   short_description: HealthCheck
 - access: domain,user
-  path: /api/v2/metadata
+  path: /api/v1/new/metadata
   short_description: Metadata Endpoint
 - access: domain,user
-  path: /api/v2/login
+  path: /api/v1/new/login
   short_description: Login Endpoint
 - access: domain,user
-  path: /api/v2/register
+  path: /api/v1/new/register
   short_description: Registration Endpoint
 
 roles:

@@ -37,7 +37,7 @@ async def root():
 
 
 # Adding routes for each example in the repo
-app.include_router(worker.router, prefix="/api/v2")
+app.include_router(worker.router, prefix="/api/v1/new")
 
 # This is only here to customize the swagger :)
 def custom_openapi():

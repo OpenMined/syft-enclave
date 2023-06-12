@@ -7,6 +7,7 @@ from syft.node.routes import make_routes
 
 enable_external_lib("oblv")
 os.environ["ENABLE_OBLV"] = "true"
+os.environ["ENABLE_SIGNUP"] = "true"
 
 worker: Worker = Worker(node_type=NodeType.ENCLAVE)
 
